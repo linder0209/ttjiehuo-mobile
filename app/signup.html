@@ -10,6 +10,7 @@
   <!-- build:css(.) styles/signup-vendor.css -->
   <!-- bower:css -->
   <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
+  <link rel="stylesheet" href="../bower_components/fontawesome/css/font-awesome.css" />
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/signup.css -->
@@ -20,36 +21,38 @@
 
 <div class="container">
   <div class="row">
+    <header class="col-md-6 col-md-offset-3 text-center" >
+      <img class="img-responsive" src="./images/logo.png" alt="天天解惑 Logo"/>
+    </header>
+
     <form name="loginForm" class="col-md-6 col-md-offset-3" method="post">
 
-      <div class="form-group">
-        <label for="mobile" class="control-label">账号</label>
-        <input type="text" class="form-control" id="mobile" name="mobile" minlength="4" maxlength="11"  placeholder="登录账号（）" />
-      </div>
+      <ul class="form-list">
+        <li>
+          <i class="fa fa-mobile"></i>
+          <input type="text" class="form-control" id="mobile" name="mobile" minlength="4" maxlength="11"  placeholder="登录账号（填写中国大陆手机号）" />
+        </li>
+        <li>
+          <input type="password" class="form-control" id="password" name="password" minlength="6" maxlength="80"
+                 placeholder="请输入密码"/>
+        </li>
+        <li>
+          <div class="row">
+            <div class="col-sm-7">
+              <input type="password" class="form-control" id="securityCode" name="securityCode" minlength="6" maxlength="80"
+                     placeholder="验证码"/>
+            </div>
+            <div class="col-sm-5">
+              <button type="button" class="btn btn-default btn-lg">发送验证码</button>
+            </div>
+          </div>
+        </li>
+      </ul>
 
       <div class="form-group">
-        <label for="password" class="control-label">密码</label>
-        <a ng-href="/forgot#/password" class="pull-right">忘记密码</a>
-        <input type="password" class="form-control" id="password" name="password" minlength="6" maxlength="80" required
-               ng-model="account.password" placeholder="请输入密码" tabindex="2"/>
+        <button type="submit" class="btn btn-primary btn-lg btn-block">注册</button>
       </div>
 
-      <div class="form-group">
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" name="keepSigned" id="keepSigned" ng-model="account.keepSigned" tabindex="3"> 下次自动登录
-          </label>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary" tabindex="4">登录</button>
-      </div>
-
-      <div class="form-group">
-        <strong>没有账户？</strong>
-        <a class="btn-link" href="" ng-href="/signup" title="注册">注册</a>
-      </div>
     </form>
   </div>
 </div>

@@ -338,7 +338,7 @@ module.exports = function (grunt) {
       },
       dist: {
         files: {
-          '<%= yeoman.app %>/styles/signup.css': '<%= yeoman.app %>/less/signup.less'
+          '<%= config.app %>/styles/signup.css': '<%= config.app %>/less/signup.less'
         }
       }
     }
@@ -405,5 +405,9 @@ module.exports = function (grunt) {
     'newer:jshint',
     'test',
     'build'
+  ]);
+
+  grunt.registerTask('buildless', [
+    'less'
   ]);
 };

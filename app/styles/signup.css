@@ -1,0 +1,20 @@
+body {
+  background-color: #f1f1f1;
+}
+.form-list {
+  background-color: #fff;
+  padding-left: 0;
+}
+.form-list > li {
+  border-top: 1px solid #ddd;
+  display: block;
+  padding: 10px 20px;
+}
+.form-list > li:last-child {
+  border-bottom: 1px solid #ddd;
+}
+.form-list .form-control {
+  border: 0 none;
+  box-shadow: none;
+  display: inline-block;
+}
