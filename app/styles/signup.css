@@ -1,5 +1,36 @@
+html,
+body {
+  height: auto;
+  min-height: 100%;
+}
+html {
+  position: relative;
+}
 body {
   background-color: #f1f1f1;
+}
+.position-rel {
+  position: relative;
+}
+/*
+* 页面顶部
+*/
+.header {
+  text-align: center;
+  margin: 30px 0;
+}
+/*
+* 页面底部样式
+*/
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  margin: 30px 0;
+}
+.footer-assist {
+  padding-top: 100px;
 }
 .form-list {
   background-color: #fff;
@@ -16,5 +47,64 @@ body {
 .form-list .form-control {
   border: 0 none;
   box-shadow: none;
+}
+.input-mobile,
+.input-password,
+.input-security {
+  background: no-repeat 0 50%;
+  padding-left: 40px;
+  font-size: 16px;
+}
+.input-mobile {
+  background-image: url("../images/icon_mobile.png");
+}
+.input-password {
+  background-image: url("../images/icon_password.png");
+}
+.input-security {
+  background-image: url("../images/icon_security.png");
+}
+.agreement {
+  text-align: center;
+  color: #999;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 30px;
+}
+.text-danger,
+.text-success {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 5px 0px 10px;
+}
+.text-danger {
+  color: #ff441f;
+}
+.text-success {
+  color: #54b822;
+}
+.icon_danger,
+.icon_success {
   display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  vertical-align: text-top;
+}
+.icon_danger {
+  background: url("../images/icon_danger.png") no-repeat 0 50%;
+}
+.icon_success {
+  background: url("../images/icon_success.png") no-repeat 0 50%;
+}
+.password-eye {
+  position: absolute;
+  right: 20px;
+  top: 16px;
+  height: 20px;
+  width: 38px;
+  background: url("../images/icon_eye.png") no-repeat 0 50%;
+}
+.password-eye.gray {
+  background: url("../images/icon_eye_gray.png");
 }
