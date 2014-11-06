@@ -17,6 +17,11 @@ body {
 .position-rel{
   position: relative;
 }
+
+.margin-tb{
+  margin-top: @margin-md;
+  margin-bottom: @margin-md;
+}
 /*
 * 页面顶部
 */
@@ -59,7 +64,7 @@ body {
 .input-mobile,
 .input-password,
 .input-security{
-  background: no-repeat 0 50%;
+  background: no-repeat 0 50% #fff;
   padding-left: 40px;
   font-size: 16px;
 }
@@ -120,4 +125,24 @@ body {
 
 .password-eye.gray{
   background: url("../images/icon_eye_gray.png");
+}
+
+.form-panel{
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 20px;
+  margin: 20px 0;
+  .checkbox{
+    margin: 20px 0;
+  }
+}
+
+.form-input{
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+  color: #555;
+  padding: 3px 12px;
+  transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
 }

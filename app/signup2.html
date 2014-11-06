@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>天天解惑注册成功调查页面</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="shortcut icon" href="/favicon.ico">
+  <!-- build:css(.) styles/signup-vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css(.tmp) styles/signup.css -->
+  <link rel="stylesheet" href="styles/signup.css">
+  <!-- endbuild -->
+</head>
+<body>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <p class="margin-tb">
+        <i class="icon_success"></i>
+        天天解惑网注册成功！
+      </p>
+
+      <form name="surveyForm" class="form-panel" method="post">
+
+        <p>在以下哪几个方面需要指导，请选择：</p>
+
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="surveyOption" value="1"> 简历制作
+          </label>
+        </div>
+
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="surveyOption" value="2"> 面试辅导
+          </label>
+        </div>
+
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="surveyOption" value="3"> offer 比较
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="surveyOption" value="4"> 酬薪谈判
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="surveyOption" value="5"> 职业生涯规划
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="surveyOption" value="6"> 其他
+          </label>
+          <input type="text" name="other" class="form-input">
+        </div>
+      </form>
+
+      <div>
+        <button type="submit" class="btn btn-primary btn-lg btn-block">提交</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-assist"></div>
+<footer class="footer">
+  &copy; 2014 天天解惑网
+</footer>
+
+<!-- build:js(.) scripts/signup-vendor.js -->
+<!-- bower:js -->
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+<script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js(.) scripts/signup.js -->
+<script src="scripts/signup.js"></script>
+<!-- endbuild -->
+
+</body>
+</html>
