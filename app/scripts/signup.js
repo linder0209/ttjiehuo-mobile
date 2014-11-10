@@ -23,12 +23,41 @@ $(function () {
 
 
   //发送验证码
-  $('#sendSecurity').click(function(){
+  $('#sendSecurity').click(function () {
+    var $mobile = $('#mobile');
+    if ($mobile.valid()) {
+      $.ajax({
+        type: 'post',
+        dataType: 'json',
+        url: 'http://www.ttjiehuo.com/tbs/smsController/queryIdentifyingCode',
+        data: {
+          mobile: $mobile.val(),
+          type: 2,
+          t: new Date()
+        },
+        success: function (data) {
+          if (data.success  === true) {
+            $('#signupForm .text-container.success').html('<i class="icon_success"></i> 验证码发送成功').show();
+            $('#sendSecurity').html('120秒后可重新发送（<span>120</span>）').attr('disabled','disabled');
+            var step = 120;
+            var interval = setInterval(function(){
+              step--;
+              $('#sendSecurity span').text(step);
+              if(step === 0){
+                clearInterval(interval);
+                $('#sendSecurity').html('发送验证码').removeAttr('disabled');
+              }
+            }, 1000);
+          } else {
 
+          }
+        }
+      });
+    }
   });
 
   $('#signupForm').validate({
-    errorLabelContainer: $('#signupForm .text-danger-container'),
+    errorLabelContainer: $('#signupForm .text-container.danger'),
     rules: {
       //mobile: {
       //  remote: {
@@ -37,8 +66,25 @@ $(function () {
       //    dataType: 'json'
       //  }
       //}
-    },
-    messages: {
+      //securityCode: {
+      //  remote: {
+      //    url: 'http://www.ttjiehuo.com/tbs/mobile/checkVerifyCode',
+      //    type: 'get',
+      //    dataType: 'json',
+      //    data: {
+      //      mobile: function() {
+      //        return $('#mobile').val();
+      //      },
+      //      verifyCode: function() {
+      //        return $('#securityCode').val();
+      //      },
+      //      t: function(){
+      //        return new Date();
+      //      }
+      //    }
+      //  }
+      //}
+    }, messages: {
       mobile: {
         required: '请输入手机号'//,
         //remote: '该手机号已被注册！'
@@ -49,11 +95,31 @@ $(function () {
       },
 
       securityCode: {
-        required: '请输入验证码'
+        required: '请输入验证码',
+        remote: '验证码不正确'
       }
-    },
-    submitHandler: function () {
+    }, submitHandler: function () {
+      location.href = 'survey.html';
 
+      /*$.ajax({
+        type: 'post',
+        dataType: 'json',
+        url: 'http://www.ttjiehuo.com/tbs/mobile/insertUser',
+        data: {
+          mobile: $('#mobile').val(),
+          mobileCode: $('#securityCode').val(),
+          password: $('#password').val()
+        },
+        success: function (data) {
+          if (data.msg=='00') {
+            location.href = 'survey.html';
+          }else if(data.msg=='02'){
+
+          }else {
+
+          }
+        }
+      });*/
     }
   });
 });

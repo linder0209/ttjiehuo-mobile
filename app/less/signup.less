@@ -19,9 +19,9 @@ body {
   position: relative;
 }
 
-.margin-tb{
-  margin-top: @margin-md;
-  margin-bottom: @margin-md;
+.margin-tb-20{
+  margin-top: @margin-lg;
+  margin-bottom: @margin-lg;
 }
 
 .margin-top{
@@ -137,18 +137,22 @@ select.text-danger {
   color: #ff441f;
 }
 
-.text-danger-container,
-.text-success-container{
+.text-container{
   font-size: 16px;
   font-weight: bold;
   margin: 0;
   display: none;
-  margin: 0 20px -10px;
+  margin: 10px 20px;
 }
-.text-danger-container{
+
+.text-container + .text-container{
+  margin-bottom: -10px;
+}
+
+.text-container.danger{
   color: #ff441f;
 }
-.text-success-container{
+.text-container.success{
   color: #54b822;
 }
 
@@ -166,4 +170,16 @@ select.text-danger {
 
 .icon_success{
   background: url("../images/icon_success.png") no-repeat 0 50%;
+}
+
+.success-info{
+  padding: 0;
+  margin-top: @margin-vl;
+  text-align: center;
+  font-weight: bold;
+
+  h4{
+    margin-top: @margin-vl;
+    margin-bottom: @margin-vl;
+  }
 }

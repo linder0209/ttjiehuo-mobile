@@ -16,9 +16,9 @@ body {
 .position-rel {
   position: relative;
 }
-.margin-tb {
-  margin-top: 10px;
-  margin-bottom: 10px;
+.margin-tb-20 {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .margin-top {
   margin-top: 20px;
@@ -123,18 +123,20 @@ textarea.text-danger,
 select.text-danger {
   color: #ff441f;
 }
-.text-danger-container,
-.text-success-container {
+.text-container {
   font-size: 16px;
   font-weight: bold;
   margin: 0;
   display: none;
-  margin: 0 20px -10px;
+  margin: 10px 20px;
 }
-.text-danger-container {
+.text-container + .text-container {
+  margin-bottom: -10px;
+}
+.text-container.danger {
   color: #ff441f;
 }
-.text-success-container {
+.text-container.success {
   color: #54b822;
 }
 .icon_danger,
@@ -150,4 +152,14 @@ select.text-danger {
 }
 .icon_success {
   background: url("../images/icon_success.png") no-repeat 0 50%;
+}
+.success-info {
+  padding: 0;
+  margin-top: 30px;
+  text-align: center;
+  font-weight: bold;
+}
+.success-info h4 {
+  margin-top: 30px;
+  margin-bottom: 30px;
 }

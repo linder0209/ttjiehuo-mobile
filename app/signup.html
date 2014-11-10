@@ -17,50 +17,59 @@
   <!-- endbuild -->
 </head>
 <body>
-<header class="header" >
-  <img src="./images/logo.png" alt="天天解惑 Logo"/>
-</header>
 
-<div class="container">
-  <div class="row">
+<div id="main">
+  <header class="header" >
+    <img src="images/logo.png" alt="天天解惑 Logo"/>
+  </header>
 
-    <form name="signupForm" id="signupForm" class="col-md-6 col-md-offset-3 padding0" method="post">
+  <div class="container">
+    <div class="row">
 
-      <ul class="form-list">
-        <li>
-          <input type="text" class="form-control input-mobile" id="mobile" name="mobile" maxlength="11" phonesZH="true" required
-                 placeholder="登录账号（填写中国大陆手机号）" />
-        </li>
-        <li class="position-rel">
-          <input type="password" class="form-control input-password" id="password" name="password"  required
-                 passwordStrategy="true" placeholder="密码（6-16位数字或字母组合）"/>
-          <i class="password-eye gray" id="paswordEye"></i>
-        </li>
-        <li>
-          <div class="row">
-            <div class="col-xs-6">
-              <input type="text" class="form-control input-security" id="securityCode" name="securityCode" required
-                     placeholder="验证码"/>
+      <form name="signupForm" id="signupForm" class="col-md-6 col-md-offset-3 padding0" method="post">
+
+        <ul class="form-list">
+          <li>
+            <input type="text" class="form-control input-mobile" id="mobile" name="mobile" maxlength="11" phonesZH="true" required
+                   placeholder="登录账号（填写中国大陆手机号）" />
+          </li>
+          <li class="position-rel">
+            <input type="password" class="form-control input-password" id="password" name="password"  required
+                   passwordStrategy="true" placeholder="密码（6-16位数字或字母组合）"/>
+            <i class="password-eye gray" id="paswordEye"></i>
+          </li>
+          <li>
+            <div class="row">
+              <div class="col-xs-6">
+                <input type="text" class="form-control input-security" id="securityCode" name="securityCode" required
+                       placeholder="验证码"/>
+              </div>
+              <div class="col-xs-6">
+                <button type="button" id="sendSecurity" class="btn btn-default" disabled="disabled">
+                  发送验证码
+                </button>
+              </div>
             </div>
-            <div class="col-xs-6">
-              <button type="button" id="sendSecurity" class="btn btn-default" disabled="disabled">发送验证码</button>
-            </div>
-          </div>
-        </li>
-      </ul>
+          </li>
+        </ul>
 
-      <div class="text-danger-container">
+        <div class="text-container danger">
 
-      </div>
+        </div>
 
-      <div class="form-button">
-        <button type="submit" class="btn btn-primary btn-block btn-lg" disabled="disabled">注册</button>
-      </div>
+        <div class="text-container success">
 
-      <div class="form-group agreement">
-        我已阅读并同意天天解惑 <a href="#">《使用协议》</a>
-      </div>
-    </form>
+        </div>
+
+        <div class="form-button">
+          <button type="submit" class="btn btn-primary btn-block btn-lg" disabled="disabled">注册</button>
+        </div>
+
+        <div class="form-group agreement">
+          我已阅读并同意天天解惑 <a href="#">《使用协议》</a>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 
