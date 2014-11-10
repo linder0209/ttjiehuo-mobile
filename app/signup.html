@@ -24,33 +24,37 @@
 <div class="container">
   <div class="row">
 
-    <form name="signupForm" id="signupForm" class="col-md-6 col-md-offset-3" method="post">
+    <form name="signupForm" id="signupForm" class="col-md-6 col-md-offset-3 padding0" method="post">
 
       <ul class="form-list">
         <li>
-          <input type="text" class="form-control input-mobile" id="mobile" name="mobile" minlength="4" maxlength="11"
+          <input type="text" class="form-control input-mobile" id="mobile" name="mobile" maxlength="11" phonesZH="true" required
                  placeholder="登录账号（填写中国大陆手机号）" />
         </li>
         <li class="position-rel">
-          <input type="password" class="form-control input-password" id="password" name="password" minlength="6" maxlength="80"
-                 placeholder="请输入密码"/>
+          <input type="password" class="form-control input-password" id="password" name="password"  required
+                 passwordStrategy="true" placeholder="密码（6-16位数字或字母组合）"/>
           <i class="password-eye gray" id="paswordEye"></i>
         </li>
         <li>
           <div class="row">
             <div class="col-xs-6">
-              <input type="text" class="form-control input-security" id="securityCode" name="securityCode" minlength="6" maxlength="80"
+              <input type="text" class="form-control input-security" id="securityCode" name="securityCode" required
                      placeholder="验证码"/>
             </div>
             <div class="col-xs-6">
-              <button type="button" class="btn btn-default btn-lg" disabled="disabled">发送验证码</button>
+              <button type="button" id="sendSecurity" class="btn btn-default" disabled="disabled">发送验证码</button>
             </div>
           </div>
         </li>
       </ul>
 
-      <div class="margin-top">
-        <button type="submit" class="btn btn-primary btn-lg btn-block" disabled="disabled">注册</button>
+      <div class="text-danger-container">
+
+      </div>
+
+      <div class="form-button">
+        <button type="submit" class="btn btn-primary btn-block btn-lg" disabled="disabled">注册</button>
       </div>
 
       <div class="form-group agreement">
@@ -68,11 +72,12 @@
 <!-- build:js(.) scripts/signup-vendor.js -->
 <!-- bower:js -->
 <script src="../bower_components/jquery/dist/jquery.js"></script>
-<script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="../bower_components/jquery-validation/dist/jquery.validate.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
 <!-- build:js(.) scripts/signup.js -->
+<script src="scripts/common/tt_validate.js"></script>
 <script src="scripts/signup.js"></script>
 <!-- endbuild -->
 

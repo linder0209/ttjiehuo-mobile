@@ -20,4 +20,40 @@ $(function () {
     $('#paswordEye').removeClass('gray');
     $('#signupForm button').removeAttr('disabled');
   });
+
+
+  //发送验证码
+  $('#sendSecurity').click(function(){
+
+  });
+
+  $('#signupForm').validate({
+    errorLabelContainer: $('#signupForm .text-danger-container'),
+    rules: {
+      //mobile: {
+      //  remote: {
+      //    url: 'http://www.ttjiehuo.com/tbs/mobile/accountAlreadyExists',
+      //    type: 'get',
+      //    dataType: 'json'
+      //  }
+      //}
+    },
+    messages: {
+      mobile: {
+        required: '请输入手机号'//,
+        //remote: '该手机号已被注册！'
+      },
+
+      password: {
+        required: '请输入密码'
+      },
+
+      securityCode: {
+        required: '请输入验证码'
+      }
+    },
+    submitHandler: function () {
+
+    }
+  });
 });

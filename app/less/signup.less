@@ -1,5 +1,6 @@
 // Core variables
 @import "variables.less";
+@import "vendor-prefixes.less";
 
 html, body {
   height: auto;
@@ -27,6 +28,9 @@ body {
   margin-top: @margin-lg;
 }
 
+.padding0{
+  padding: 0;
+}
 /*
 * 页面顶部
 */
@@ -47,7 +51,7 @@ body {
 }
 
 .footer-assist {
-  padding-top: 100px;
+  padding-top: @padding-hg;
 }
 
 .form-list {
@@ -71,7 +75,6 @@ body {
 .input-security{
   background: no-repeat 0 50% #fff;
   padding-left: 40px;
-  font-size: 16px;
 }
 .input-mobile{
   background-image: url("../images/icon_mobile.png");
@@ -87,36 +90,8 @@ body {
   color: #999;
   font-size: 18px;
   font-weight: bold;
-  margin-top: @margin-vl;
-}
-
-.text-danger,
-.text-success{
-  font-size: 16px;
-  font-weight: bold;
-  margin: 5px 0px 10px;
-}
-.text-danger{
-  color: #ff441f;
-}
-.text-success{
-  color: #54b822;
-}
-
-.icon_danger,
-.icon_success{
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  margin-right: 5px;
-  vertical-align: text-top;
-}
-.icon_danger{
-  background: url("../images/icon_danger.png") no-repeat 0 50%;
-}
-
-.icon_success{
-  background: url("../images/icon_success.png") no-repeat 0 50%;
+  margin-top: @margin-lg;
+  margin-bottom: @margin-lg;
 }
 
 .password-eye{
@@ -150,4 +125,45 @@ body {
   color: #555;
   padding: 3px 12px;
   transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+}
+.form-button{
+  margin: 20px;
+}
+
+/*校验样式*/
+input.text-danger,
+textarea.text-danger,
+select.text-danger {
+  color: #ff441f;
+}
+
+.text-danger-container,
+.text-success-container{
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  display: none;
+  margin: 0 20px -10px;
+}
+.text-danger-container{
+  color: #ff441f;
+}
+.text-success-container{
+  color: #54b822;
+}
+
+.icon_danger,
+.icon_success{
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  vertical-align: text-top;
+}
+.icon_danger{
+  background: url("../images/icon_danger.png") no-repeat 0 50%;
+}
+
+.icon_success{
+  background: url("../images/icon_success.png") no-repeat 0 50%;
 }
