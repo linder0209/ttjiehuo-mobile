@@ -2,9 +2,9 @@ $(function () {
   $('#btn').click(function () {
     var $survey = $('[name="surveyOption"]:checked');
     if ($survey.length === 0) {
-      $('#dangerInfo').show().children('span').text('请至少选择一项');
+      $('#dangerInfo').show().find('span').text('请至少选择一项');
     } else if ($survey.val() === '6' && $.trim($('input[name="other"]').val()) === '') {
-      $('#dangerInfo').show().children('span').text('请输入其他项');
+      $('#dangerInfo').show().find('span').text('请输入其他项');
     } else {
       $('#main').empty().load('./templates/success.html');
       /*$.ajax({

@@ -26,7 +26,23 @@ $(function () {
   $('#sendSecurity').click(function () {
     var $mobile = $('#mobile');
     if ($mobile.valid()) {
-      $.ajax({
+
+      //本地测试
+      $('#signupForm .text-container').append('<li class="success"><i class="icon_success"></i> 验证码发送成功</li>').show();
+      $('#sendSecurity').html('120秒后可重新发送（<span>120</span>）').attr('disabled','disabled');
+      var step = 120;
+      var interval = setInterval(function(){
+        step--;
+        $('#sendSecurity span').text(step);
+        if(step === 0){
+          clearInterval(interval);
+          $('#sendSecurity').html('发送验证码').removeAttr('disabled');
+        }
+      }, 1000);
+
+
+      //正式环境代码
+      /*$.ajax({
         type: 'post',
         dataType: 'json',
         url: 'http://www.ttjiehuo.com/tbs/smsController/queryIdentifyingCode',
@@ -37,7 +53,7 @@ $(function () {
         },
         success: function (data) {
           if (data.success  === true) {
-            $('#signupForm .text-container.success').html('<i class="icon_success"></i> 验证码发送成功').show();
+            $('#signupForm .text-container').append('<li class="success"><i class="icon_success"></i> 验证码发送成功</li>').show();
             $('#sendSecurity').html('120秒后可重新发送（<span>120</span>）').attr('disabled','disabled');
             var step = 120;
             var interval = setInterval(function(){
@@ -52,12 +68,21 @@ $(function () {
 
           }
         }
-      });
+      });*/
     }
   });
 
+  $.validator.setDefaults({
+    showErrors: function(errorMap, errorList) {
+      if(errorList && errorList.length > 0){
+        this.settings.errorLabelContainer.html('<li class="danger"><i class="icon_danger"></i>' + errorList[0].message + '</li>').show();
+      }else{
+        this.settings.errorLabelContainer.html('').hide();
+      }
+    }
+  });
   $('#signupForm').validate({
-    errorLabelContainer: $('#signupForm .text-container.danger'),
+    errorLabelContainer: $('#signupForm .text-container'),
     rules: {
       //mobile: {
       //  remote: {

@@ -19,13 +19,13 @@ body {
   position: relative;
 }
 
-.margin-tb-20{
+.margin-tb-lg{
   margin-top: @margin-lg;
   margin-bottom: @margin-lg;
 }
 
-.margin-top{
-  margin-top: @margin-lg;
+.margin-left-sm{
+  margin-left: @margin-sm;
 }
 
 .padding0{
@@ -112,7 +112,7 @@ body {
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   padding: 20px;
-  margin: 20px 0;
+  margin-top: 20px;
   .checkbox{
     margin: 20px 0;
   }
@@ -142,17 +142,20 @@ select.text-danger {
   font-weight: bold;
   margin: 0;
   display: none;
+  padding: 0;
+}
+
+.text-container li{
+  list-style: none;
   margin: 10px 20px;
 }
-
-.text-container + .text-container{
+.text-container li:last-child{
   margin-bottom: -10px;
 }
-
-.text-container.danger{
+.text-container li.danger{
   color: #ff441f;
 }
-.text-container.success{
+.text-container li.success{
   color: #54b822;
 }
 
@@ -173,7 +176,7 @@ select.text-danger {
 }
 
 .success-info{
-  padding: 0;
+  //padding: 0 5px;
   margin-top: @margin-vl;
   text-align: center;
   font-weight: bold;

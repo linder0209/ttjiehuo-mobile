@@ -3,11 +3,8 @@
 (function () {
   var onkeyup = $.validator.defaults.onkeyup;
   $.validator.setDefaults({
-    //延迟校验
     onfocusout: function (e) {
-      setTimeout(function () {
-        $(e).valid();
-      }, 150);
+      $(e).valid();
     },
     //重新实现onkeyup事件，当远程校验时，按下按键不触发该事件
     onkeyup: function (element, event) {
@@ -19,13 +16,7 @@
       }
       onkeyup.call(this, element, event);
     },
-    showErrors: function(errorMap, errorList) {
-      if(errorList && errorList.length > 0){
-        this.settings.errorLabelContainer.html('<i class="icon_danger"></i>' + errorList[0].message).show();
-      }else{
-        this.settings.errorLabelContainer.html('').hide();
-      }
-    },
+
     // For the invisible tags, we need to validate too.
     ignore: 'input[type="hidden"], :button, :hidden',
     errorClass: 'text-danger'
