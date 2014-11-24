@@ -27,24 +27,12 @@ $(function () {
     var $mobile = $('#mobile');
     if ($mobile.valid()) {
 
-      //本地测试
-      $('#signupForm .text-container').append('<li class="success"><i class="icon_success"></i> 验证码发送成功</li>').show();
-      $('#sendSecurity').html('120秒后可重新发送（<span>120</span>）').attr('disabled','disabled');
-      var step = 120;
-      var interval = setInterval(function(){
-        step--;
-        $('#sendSecurity span').text(step);
-        if(step === 0){
-          clearInterval(interval);
-          $('#sendSecurity').html('发送验证码').removeAttr('disabled');
-        }
-      }, 1000);
 
 
       //正式环境代码
-      /*$.ajax({
+      $.ajax({
         type: 'post',
-        dataType: 'json',
+        dataType: 'text',
         url: 'http://www.ttjiehuo.com/tbs/smsController/queryIdentifyingCode',
         data: {
           mobile: $mobile.val(),
@@ -52,10 +40,11 @@ $(function () {
           t: new Date()
         },
         success: function (data) {
-          if (data.success  === true) {
+          if (data.length > 0) {
+            $('#securityCode').data('securityCode',data);
             $('#signupForm .text-container').append('<li class="success"><i class="icon_success"></i> 验证码发送成功</li>').show();
-            $('#sendSecurity').html('120秒后可重新发送（<span>120</span>）').attr('disabled','disabled');
-            var step = 120;
+            $('#sendSecurity').html('20秒后可重新发送（<span>20</span>）').attr('disabled','disabled');
+            var step = 20;
             var interval = setInterval(function(){
               step--;
               $('#sendSecurity span').text(step);
@@ -64,11 +53,13 @@ $(function () {
                 $('#sendSecurity').html('发送验证码').removeAttr('disabled');
               }
             }, 1000);
-          } else {
-
+          }else{
+            alert('获取手机验证码出错');
           }
+
+
         }
-      });*/
+      });
     }
   });
 
@@ -84,35 +75,39 @@ $(function () {
   $('#signupForm').validate({
     errorLabelContainer: $('#signupForm .text-container'),
     rules: {
-      //mobile: {
-      //  remote: {
-      //    url: 'http://www.ttjiehuo.com/tbs/mobile/accountAlreadyExists',
-      //    type: 'get',
-      //    dataType: 'json'
-      //  }
-      //}
-      //securityCode: {
-      //  remote: {
-      //    url: 'http://www.ttjiehuo.com/tbs/mobile/checkVerifyCode',
-      //    type: 'get',
-      //    dataType: 'json',
-      //    data: {
-      //      mobile: function() {
-      //        return $('#mobile').val();
-      //      },
-      //      verifyCode: function() {
-      //        return $('#securityCode').val();
-      //      },
-      //      t: function(){
-      //        return new Date();
-      //      }
-      //    }
-      //  }
-      //}
+      mobile: {
+        remote: {
+          url: 'http://www.ttjiehuo.com/tbs/mobile/accountAlreadyExists',
+          type: 'get',
+          dataType: 'json'
+        }
+      },
+      securityCode: {
+        remote: {
+          url: 'http://www.ttjiehuo.com/tbs/mobile/checkVerifyCode',
+          type: 'get',
+          dataType: 'json',
+          data: {
+            mobile: function() {
+              return $('#mobile').val();
+            },
+            verifyCode: function() {
+              return $('#securityCode').val();
+            },
+            mobileCode: function(){
+              return  $('#securityCode').data('securityCode');
+            },
+
+            t: function(){
+              return new Date();
+            }
+          }
+        }
+      }
     }, messages: {
       mobile: {
-        required: '请输入手机号'//,
-        //remote: '该手机号已被注册！'
+        required: '请输入手机号',
+        remote: '该手机号已被注册！'
       },
 
       password: {
@@ -124,27 +119,77 @@ $(function () {
         remote: '验证码不正确'
       }
     }, submitHandler: function () {
-      location.href = 'survey.html';
 
-      /*$.ajax({
+      $.ajax({
         type: 'post',
         dataType: 'json',
         url: 'http://www.ttjiehuo.com/tbs/mobile/insertUser',
         data: {
           mobile: $('#mobile').val(),
-          mobileCode: $('#securityCode').val(),
+          mobileCode: $('#securityCode').data('securityCode'),
+          verifyCode: $('#securityCode').val(),
           password: $('#password').val()
         },
         success: function (data) {
           if (data.msg=='00') {
-            location.href = 'survey.html';
+
+            $('#main').empty().load('./templates/survey.html',function(){
+
+              $(document.body).data('doubtsNo',data.doubtsNo);
+
+              $(document.body).data('userId',data.userId);
+
+              survey();
+            });
+
+
+
           }else if(data.msg=='02'){
 
           }else {
 
           }
         }
-      });*/
+      });
     }
   });
+
+  function survey(){
+    $('#btn').click(function () {
+      var $survey = $('[name="surveyOption"]:checked');
+      if ($survey.length === 0) {
+        $('#dangerInfo').show().find('span').text('请至少选择一项');
+      } else if ($survey.val() === '6' && $.trim($('input[name="other"]').val()) === '') {
+        $('#dangerInfo').show().find('span').text('请输入其他项');
+      } else {
+        var guidance = $('input[name="surveyOption"]:checked').not('[value="6"]').map(function(i,item){
+          return $.trim($(item).parent().text());
+        }).get().join('|');
+        $.ajax({
+          type: 'POST',
+          dataType: 'json',
+          url: 'http://www.ttjiehuo.com/tbs/guidance/insertGuidance',
+          data: {
+            userId: $(document.body).data('userId'),
+            guidance: guidance,
+            other: $('input[name="surveyOption"][value="6"]:checked').length>0? $.trim($('input[name="other"]').val()): ''
+          },
+          success: function (data) {
+            if (data.msg == '00') {
+              $('#main').empty().load('./templates/success.html');
+            } else if (data.msg == '02') {
+            } else {
+            }
+          }
+        });
+      }
+    });
+
+    $('[name="surveyOption"]').click(function(e){
+      if($(e.currentTarget).prop('checked')){
+        $('#dangerInfo').hide();
+      }
+    });
+
+  }
 });

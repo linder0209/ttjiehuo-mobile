@@ -6,8 +6,7 @@ $(function () {
     } else if ($survey.val() === '6' && $.trim($('input[name="other"]').val()) === '') {
       $('#dangerInfo').show().find('span').text('请输入其他项');
     } else {
-      $('#main').empty().load('./templates/success.html');
-      /*$.ajax({
+      $.ajax({
         type: 'POST',
         dataType: 'json',
         url: 'http://www.ttjiehuo.com/tbs/guidance/insertGuidance',
@@ -19,7 +18,7 @@ $(function () {
           } else {
           }
         }
-      });*/
+      });
     }
   });
 
